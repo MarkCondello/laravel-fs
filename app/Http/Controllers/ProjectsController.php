@@ -14,7 +14,6 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        //
         $projects = Project::all();
         return view('projects.index', compact('projects'));
     }
@@ -26,7 +25,6 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        //
         return view('projects.create');
     }
 
@@ -36,17 +34,14 @@ class ProjectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
-        $project = new Project();
-        $project->title = $request->title;
-        $project->description = $request->description;
-        $project->save();
-
+       $validProject = request()->validate([
+           'title' => 'required|min:4|max:255',
+           'description' => 'required|min:10'
+        ]);
+        Project::create($validProject);
         return redirect('/projects');
-
-        dump($request->all());
     }
 
     /**
@@ -58,7 +53,6 @@ class ProjectsController extends Controller
      */
     public function show(Project $project)
     {
-        //
         return view('projects.show', compact('project'));
     }
 
@@ -70,7 +64,6 @@ class ProjectsController extends Controller
      */
     public function edit(Project $project)
     {
-        //
         return view('projects.edit', compact('project'));
     }
 
@@ -81,15 +74,10 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update( Project $project)
     {
-        //
-        $project->title = $request->title;
-        $project->description = $request->description;
-        $project->save();
+        $project->update(request(['title', 'description']));
         return redirect('/projects');
-        dd($request->title);
-
     }
 
     /**
@@ -100,8 +88,7 @@ class ProjectsController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
          $project->delete();
-        return redirect('/projects');
+         return redirect('/projects');
     }
 }

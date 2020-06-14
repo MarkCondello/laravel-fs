@@ -5,11 +5,28 @@
     <form action="/projects" method="POST">
         @csrf
         <div>
-            <input type="text" name="title" placeholder="Project title"/>
+            <input type="text" name="title" placeholder="Project title" value="{{old('title')}}"/>
+            @if($errors->has('title'))
+                <div class="callout alert">
+                    <small>{{ $errors->get('title')[0]  }}</small>
+                </div>
+            @endif
         </div>
         <div>
-            <textarea name="description" placeholder="Project description"></textarea>
+            <textarea name="description" placeholder="Project description" value="{{old('description')}}"></textarea>
+            @if($errors->has('description'))
+                <div class="callout alert">
+                    <small>{{ $errors->get('description')[0]  }}</small>
+                </div>
+            @endif
         </div>
         <button type="submit" class="button hollow">Create project</button>
+{{--        @if($errors->any())--}}
+{{--            <ul class="callout alert">--}}
+{{--                @foreach($errors->all() as $error)--}}
+{{--                    <li>{{$error}}</li>--}}
+{{--                @endforeach--}}
+{{--            </ul>--}}
+{{--        @endif--}}
     </form>
 @endsection
