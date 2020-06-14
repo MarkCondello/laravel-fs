@@ -1,0 +1,10 @@
+.magellan-menu {
+    li {
+        a {
+            &.is-active {
+                background-color: $primary-color;
+                color: white;
+            }
+        }
+    }
+}

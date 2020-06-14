@@ -1,0 +1,12 @@
+.badge {
+    @include badge();
+    background: $badge-background;
+    color: $badge-color;
+
+    @each $name, $color in $badge-palette {
+        &.#{$name} {
+            background: $color;
+            color: color-pick-contrast($color, ($badge-color, $badge-color-alt));
+        }
+    }
+}

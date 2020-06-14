@@ -1,0 +1,11 @@
+.tabs {
+//setting options https://get.foundation/sites/docs/responsive-accordion-tabs.html
+    &.vertical{}
+    &.simple{}
+    &.primary{}
+    &-title{}
+    &-content{
+        .vertical{}
+    }
+    &-panel{}
+}

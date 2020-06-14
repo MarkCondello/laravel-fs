@@ -1,0 +1,12 @@
+.tags {
+    @include label;
+    background: $label-background;
+    color: $label-color;
+
+    @each $name, $color in $label-palette {
+        &.#{$name} {
+            background: $color;
+            color: color-pick-contrast($color, ($label-color, $label-color-alt));
+        }
+    }
+}

@@ -1,0 +1,17 @@
+form {
+//override options: https://get.foundation/sites/docs/forms.html
+
+    .help-text{
+        &.invalid {
+            color: $warning-color;
+        }
+
+        &.error {
+            color: $alert-color;
+        }
+
+        &.success {
+            color: $success-color;
+        }
+    }
+}

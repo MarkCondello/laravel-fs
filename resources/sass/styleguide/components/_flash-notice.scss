@@ -1,0 +1,15 @@
+.flash-notice {
+    @include callout;
+
+    @each $name, $color in $foundation-palette {
+        &.#{$name} {
+            @include callout-style($color);
+        }
+    }
+
+    @each $size, $padding in map-remove($callout-sizes, default) {
+        &.#{$size} {
+            @include callout-size($padding);
+        }
+    }
+}

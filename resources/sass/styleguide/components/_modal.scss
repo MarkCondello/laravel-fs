@@ -1,0 +1,42 @@
+.modal {
+
+    @include reveal-modal-base;
+    @include reveal-modal-width($reveal-width);
+    position: relative;
+    top: 100px!important;// modal is not positioning correctly
+    margin-right: auto;
+    margin-left: auto;
+    overflow-y: auto;
+
+    // Remove padding
+    &.collapse {
+        padding: 0;
+    }
+
+    // Sizing classes
+    &.tiny {
+        @include reveal-modal-width(30%);
+    }
+
+    &.small {
+        @include reveal-modal-width(50%);
+    }
+
+    &.large {
+        @include reveal-modal-width(90%);
+    }
+
+    // Full-screen mode
+    &.full {
+        @include reveal-modal-fullscreen;
+    }
+
+    @include breakpoint($-zf-zero-breakpoint only) {
+        @include reveal-modal-fullscreen;
+    }
+
+    &.without-overlay {
+        position: fixed;
+    }
+
+}
