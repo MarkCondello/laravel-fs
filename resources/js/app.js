@@ -28,8 +28,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 
 
-var heading = $("h1");
-
 $(() => {
     $(".accordion").foundation();
     $(".tabs").foundation();

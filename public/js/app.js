@@ -19304,7 +19304,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
-var heading = $("h1");
 $(function () {
   $(".accordion").foundation();
   $(".tabs").foundation();
@@ -19334,8 +19333,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/dcodegroup/Mark/cjzrightstracker/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/dcodegroup/Mark/cjzrightstracker/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/dcodegroup/Mark/sandbox/laravelfs/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/dcodegroup/Mark/sandbox/laravelfs/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
