@@ -21,3 +21,5 @@ Route::get('/contact', 'PagesController@contact');
 //Route::get('/projects/create', 'ProjectsController@create');
 
 Route::resource('projects', 'ProjectsController');
+
+Route::patch('/task/{task}', 'ProjectTaskController@update');

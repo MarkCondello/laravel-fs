@@ -76,8 +76,12 @@ class ProjectsController extends Controller
      */
     public function update( Project $project)
     {
-        $project->update(request(['title', 'description']));
-        return redirect('/projects');
+        $validProject = request()->validate([
+            'title' => 'required|min:4|max:255',
+            'description' => 'required|min:10'
+         ]);
+         $project->update($validProject);
+         return redirect('/projects');
     }
 
     /**
