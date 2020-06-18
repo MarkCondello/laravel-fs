@@ -3,10 +3,7 @@
  *------------------------------------*/
 //@import "common/pallet";
 
-/*
- * Common
- *------------------------------------*/
-//@import "common/mixins";
+
 
 /*
  * Includes
@@ -14,10 +11,15 @@
 @import "foundation-includes";
 
 /*
+ * Common
+ *------------------------------------*/
+ @import "common/mixins";
+
+/*
  * Components
  *------------------------------------*/
-//@import "components/action-menu";
-//@import "components/file-upload";
+ @import "components/product-tile";
+@import "components/accessories-slide";
 //@import "components/search-sort-table";
 
 /*

@@ -5,10 +5,6 @@
  *------------------------------------*/
 
 /*
- * Common
- *------------------------------------*/
-
-/*
  * Includes
  *------------------------------------*/
 
@@ -7573,8 +7569,259 @@ form .help-text.success {
 }
 
 /*
+ * Common
+ *------------------------------------*/
+
+.primary-color {
+  color: #1779ba;
+}
+
+.secondary-color {
+  color: #767676;
+}
+
+.success-color {
+  color: #3adb76;
+}
+
+.warning-color {
+  color: #ffae00;
+}
+
+.alert-color {
+  color: #cc4b37;
+}
+
+/*
  * Components
  *------------------------------------*/
+
+.-tile {
+  position: relative;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
+  margin-bottom: 2rem;
+}
+
+.-tile.-profile .-tile-image {
+  background-size: 30%;
+}
+
+.-tile .-tile-image {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: .5rem;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-bottom: 50%;
+}
+
+@media print, screen and (min-width: 40em) {
+  .-tile .-tile-image {
+    padding: 1rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-bottom: 30%;
+    min-height: 180px;
+  }
+}
+
+.-tile .-tile-image svg .cls-1 {
+  fill: blue;
+}
+
+.-tile .-tile-image svg .cls-2 {
+  fill: white;
+}
+
+.-tile .-tile-image .-qty-option {
+  display: flex;
+  margin-bottom: .5rem;
+  padding-right: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.-tile .-tile-image .-qty-option .product-cta {
+  z-index: 1;
+}
+
+.-tile .-tile-image .-qty-option::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 40px;
+  width: 40px;
+  background-color: blue;
+  right: 0px;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.-tile .-tile-image .-qty-option input {
+  color: grey;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  max-width: 50px;
+  padding-left: 1.5rem;
+  margin-left: -1.5rem;
+  z-index: 0;
+  background-color: blue;
+  color: white;
+}
+
+.-tile .-tile-image .-qty-option input:focus {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.-tile .-tile-image .-qty-option input::-moz-placeholder {
+  color: grey;
+}
+
+.-tile .-tile-image .-qty-option input:-ms-input-placeholder {
+  color: grey;
+}
+
+.-tile .-tile-image .-qty-option input::-ms-input-placeholder {
+  color: grey;
+}
+
+.-tile .-tile-image .-qty-option input::placeholder {
+  color: grey;
+}
+
+.-tile .-tile-image .-qty-option input:focus {
+  background-color: blue;
+  outline: none;
+}
+
+.-tile:not(:hover) .-tile-actions {
+  display: none;
+}
+
+.-tile .-tile-actions {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.-tile .-tile-actions .action-menu a,
+.-tile .-tile-actions .action-menu button {
+  display: block;
+  height: 40px;
+  width: 40px;
+  margin-right: 0;
+  margin-bottom: .5rem;
+}
+
+.-tile .-tile-actions .action-menu a {
+  padding: 0;
+}
+
+.-tile .-tile-actions i {
+  background-color: blue;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  margin-bottom: .5rem;
+  color: white;
+  font-size: 1rem;
+}
+
+.-tile .-tile-actions i:before {
+  line-height: 2.75;
+}
+
+.-tile .-tile-actions svg .cls-1 {
+  fill: blue;
+}
+
+.-tile .-tile-actions svg .cls-2 {
+  fill: white;
+}
+
+.-tile .-tile-info {
+  padding: .5rem;
+  background-color: white;
+}
+
+.-tile .-tile-info .-tile-title {
+  flex-direction: column;
+}
+
+@media print, screen and (min-width: 64em) {
+  .-tile .-tile-info {
+    padding: 1rem;
+  }
+
+  .-tile .-tile-info .-tile-title {
+    flex-direction: row;
+  }
+
+  .-tile .-tile-info .-tile-title .-secondary-title {
+    margin-left: 1rem;
+  }
+}
+
+.-tile .-tile-info h3 a {
+  color: grey;
+}
+
+.-tile .-tile-info p {
+  margin: 0;
+}
+
+.-tile-container {
+  margin: 0 .5rem;
+}
+
+@media print, screen and (min-width: 40em) {
+  .-tile-container {
+    margin: 0 1rem;
+  }
+}
+
+#accessories-slide {
+  flex-flow: nowrap;
+  overflow: hidden;
+  align-items: flex-start;
+}
+
+#accessories-slide > div {
+  min-width: 250px;
+  padding-right: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#accessories-slide .control {
+  position: absolute;
+  bottom: 25;
+  right: 30px;
+}
+
+#accessories-slide .control .prev {
+  display: inline-block;
+  margin-right: 50px;
+  cursor: pointer;
+}
+
+#accessories-slide .control .next {
+  display: inline-block;
+  cursor: pointer;
+}
 
 /*
  * Sections

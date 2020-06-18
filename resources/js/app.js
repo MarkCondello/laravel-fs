@@ -1,3 +1,5 @@
+require('./vue');
+
 window._ = require('lodash');
 
 /**

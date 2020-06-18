@@ -11,6 +11,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+<div id="app"> 
     <div class="top-bar">
         <div class="top-bar-left">
             <h1><a href="/">Laravel From Scratch</a></h1>
@@ -35,7 +36,9 @@
         </div>
 
     </div>
-
-
+    </div>
+    <script src="{{asset('js/bundle.js')}} "></script>
+       <script src="{{asset('js/app.js')}} "></script>
+      
 </body>
 </html>

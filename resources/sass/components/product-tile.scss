@@ -1,0 +1,162 @@
+.-tile {
+    position: relative;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;
+
+    &.-profile{
+        .-tile-image {
+            background-size: 30%;
+        }
+    }
+
+    .-tile-image {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: .5rem;
+        background-color: white;
+        @include bg-cover(center, 50%);
+
+        @include breakpoint(medium up){
+            padding: 1rem;
+            @include bg-cover(center, 30%);
+            min-height: 180px;
+        }
+
+
+        svg {
+            .cls-1 {
+                fill: blue;
+            }
+            .cls-2 {
+                fill: white;
+            }
+        }
+
+        .-qty-option {
+            display: flex;
+            margin-bottom: .5rem;
+            padding-right: 20px;
+            position: relative;
+            z-index: 1;
+
+            .product-cta {
+                z-index: 1;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                height: 40px;
+                width: 40px;
+                background-color: blue;
+                //border: 1px solid white;
+                right: 0px;
+                border-radius: 50%;
+                z-index: -1;
+            }
+
+            input {
+                @include stripInputStyles();
+                max-width: 50px;
+                padding-left: 1.5rem;
+                margin-left: -1.5rem;
+                z-index: 0;
+                background-color: blue;
+                color: white;
+
+                &:focus {
+                    background-color: blue;
+                    outline: none;
+                }
+            }
+        }
+    }
+
+    &:not(:hover) {
+        .-tile-actions {
+            display: none;
+        }
+    }
+
+    .-tile-actions {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+
+        .action-menu {
+            a,
+            button {
+                display: block;
+                height: 40px;
+                width: 40px;
+                margin-right: 0;
+                margin-bottom: .5rem;
+            }
+
+            a {
+                padding: 0;
+            }
+        }
+
+        i {
+            background-color: blue;
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            margin-bottom: .5rem;
+            color: white;
+            font-size: 1rem;
+            &:before {
+                line-height: 2.75;
+            }
+        }
+
+        svg {
+            .cls-1 {
+                fill: blue;
+            }
+            .cls-2 {
+                fill: white;
+            }
+        }
+    }
+
+    .-tile-info {
+        padding: .5rem;
+        background-color: white;
+
+        .-tile-title {
+            flex-direction: column;
+        }
+
+        @include breakpoint(large up){
+            padding: 1rem;
+            .-tile-title {
+                flex-direction: row;
+
+                .-secondary-title {
+                    margin-left: 1rem;
+                }
+            }
+        }
+
+        h3 {
+            a {
+                color: grey;
+            }
+        }
+        p {
+             margin: 0;
+        }
+    }
+}
+
+.-tile-container {
+    margin: 0 .5rem;
+    @include breakpoint(medium up){
+        margin: 0 1rem;
+
+    }
+}
