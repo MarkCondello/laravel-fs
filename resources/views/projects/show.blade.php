@@ -17,8 +17,7 @@
         <input type="checkbox" {{ $task->completed ? 'checked' : null}} name="completed" onChange="this.form.submit()"/>
       </label>
      </form>
-  </li>
+</div>
 @endforeach
- 
 @endif
 @endsection

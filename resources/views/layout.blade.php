@@ -11,34 +11,30 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app"> 
-    <div class="top-bar">
-        <div class="top-bar-left">
-            <h1><a href="/">Laravel From Scratch</a></h1>
+    <div id="app"> 
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <h1><a href="/">Laravel From Scratch</a></h1>
+            </div>
+            <div class="top-bar-right">
+                <ul class="menu">
+                    <li><a href="projects">Projects</a></li>
+                    <li><a href="about">About</a></li>
+                    <li><a href="contact">Contact</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="top-bar-right">
-            <ul class="menu">
-                 <li><a href="projects">Projects</a></li>
-                <li><a href="about">About</a></li>
-                <li><a href="contact">Contact</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="grid-container" style="padding-top: 3rem;">
-
-        <div class="grid-container">
-            <div class="grid-x align-center">
-                <div class="small-10">
-                    @yield('content')
-
+        <div class="grid-container" style="padding-top: 3rem;">
+            <div class="grid-container">
+                <div class="grid-x align-center">
+                    <div class="small-10">
+                        @yield('content')
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
-    </div>
-    <script src="{{asset('js/bundle.js')}} "></script>
-       <script src="{{asset('js/app.js')}} "></script>
-      
+    <script src="{{ asset('js/bundle.js') }} "></script>
+    <script src="{{ asset('js/app.js') }} "></script>  
 </body>
 </html>

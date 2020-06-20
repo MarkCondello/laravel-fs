@@ -30,38 +30,85 @@
         </div>
         
         <div class="control">
-            <p @click="previous" class="prev">
+            <button @click="previous" class="prev" ref='prev' :disabled="count === 1">
                 PREVIOUS
-            </p>
-            <p @click="next" class="next">
+            </button>
+            <button @click="next" class="next" ref="next" :disabled="count === nextBtnLimit">
                 NEXT
-            </p>    
+            </button> 
+            <div v-show="false"> 
+                <p>Count: {{ count }}</p>
+                <p>Leng: {{ items.length }}</p>
+                <p>Next limit {{ nextBtnLimit }}</p>
+            </div> 
       </div>
  </div>
 
 </template>
 <script>
 export default {
-    name: "AccessoriesSlider",
-    props: {
-        accessories:{
-            required: true,
-        }
+name: "AccessoriesSlider",
+props: {
+    accessories:{
+        required: true,
+    }
+},
+data() {
+    return {
+        count: 1,
+        items: JSON.parse(this.accessories),
+        direction: 'forward',
+        frame: 3,
+    }
+},
+mounted(){
+    //var slide = setInterval(()=>this.slideLoop(this.direction),2000)
+     this.$refs.prev.disabled = true;
+},
+computed: {
+    nextBtnLimit(){
+        return this.items.length - (this.frame - 1);
+     }
+},
+
+methods:{
+  	previous() {
+    	this.count--;
+        this.scroll("previous");
+	},
+    next() {
+    	this.count++;
+        this.scroll("next");
     },
-    data() {
-        return {
-            count: 0,
-            items: JSON.parse(this.accessories),
-            direction: 'forward',
-            frame: 3
+    scroll(position) {
+        let el = this.$refs.slider;
+        let pos = 0;
+        let increment = 2;
+        let id = setInterval(frame, 2);
+        let num = this.items.length - this.frame;
+        let width = 316;
+
+          function frame() {
+            pos++;
+
+            if (pos === width) {
+                 console.log('REACHED CLEAR INT');
+                clearInterval(id);
+            } else { 
+                if(position == 'next'){
+                     el.scrollLeft += increment;
+                    //console.log('NEXT', pos, width);
+                } else {
+                    el.scrollLeft -= increment;
+                    //console.log('PREV', pos, width)
+                }  
+            }
         }
-      
-    },
-// created(){
-//   	var slide = setInterval(()=>this.slideLoop(this.direction),2000)
-//   },
-  methods:{
-  	// slideLoop(pass) {
+    }
+  }
+}
+
+	// slideLoop(pass) {
    	// 	let steps = this.items.length - this.frame;
     // 	if(this.count >= steps & pass == "forward"){
     //         this.direction = "backward";
@@ -96,36 +143,5 @@ export default {
     //     this.direction = "forward";
     //     this.scroll("reset");
     // },
-  	previous() {
-    	this.count--;
-        this.scroll("previous");
-	},
-    next() {
-    	this.count++;
-        this.scroll("next");
-    },
-    scroll(position) {
-        let el = this.$refs.slider;
-        let pos = 0;
-        let increment = 4;
-        let id = setInterval(frame, 2);
-        let num = this.items.length - this.frame;
-        let width = 316;
-        //let resize = num * width;
-       // let check = position == "reset" ? resize : width;
-          function frame() {
-            if (pos == width) {
-              clearInterval(id);
-            } else {
-              pos += increment; 
-              if(position == 'next'){
-                  el.scrollLeft += increment;
-              }else{
-                  el.scrollLeft -= increment;
-              }  
-           }
-        }
-    }
-  }
-}
 </script>
+

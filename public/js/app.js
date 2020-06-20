@@ -1950,6 +1950,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AccessoriesSlider",
   props: {
@@ -1959,51 +1964,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      count: 0,
+      count: 1,
       items: JSON.parse(this.accessories),
       direction: 'forward',
       frame: 3
     };
   },
-  // created(){
-  //   	var slide = setInterval(()=>this.slideLoop(this.direction),2000)
-  //   },
+  mounted: function mounted() {
+    //var slide = setInterval(()=>this.slideLoop(this.direction),2000)
+    this.$refs.prev.disabled = true;
+  },
+  computed: {
+    nextBtnLimit: function nextBtnLimit() {
+      return this.items.length - (this.frame - 1);
+    }
+  },
   methods: {
-    // slideLoop(pass) {
-    // 	let steps = this.items.length - this.frame;
-    // 	if(this.count >= steps & pass == "forward"){
-    //         this.direction = "backward";
-    //         this.previous();
-    //         return
-    //     }
-    //     if(this.count <= steps & pass == "backward"){
-    //         if(this.count <= 0){
-    //             this.count = 0;
-    //             this.direction = "forward";
-    //             this.next();
-    //             return;
-    //         }
-    //         this.previous();
-    //         return;
-    //     }
-    //     if(this.count < steps & pass == "forward"){
-    //         if(this.count < 0){
-    //             this.resetScroll();
-    //             return;
-    //         } else if(this.count == 0){
-    //             this.next();
-    //             return;
-    //         }
-    //         this.next();
-    //         return;
-    //     }
-    //   this.resetScroll();
-    // },
-    // resetScroll(){
-    // 	this.count = 0;
-    //     this.direction = "forward";
-    //     this.scroll("reset");
-    // },
     previous: function previous() {
       this.count--;
       this.scroll("previous");
@@ -2015,28 +1991,62 @@ __webpack_require__.r(__webpack_exports__);
     scroll: function scroll(position) {
       var el = this.$refs.slider;
       var pos = 0;
-      var increment = 4;
+      var increment = 2;
       var id = setInterval(frame, 2);
       var num = this.items.length - this.frame;
-      var width = 316; //let resize = num * width;
-      // let check = position == "reset" ? resize : width;
+      var width = 316;
 
       function frame() {
-        if (pos == width) {
+        pos++;
+
+        if (pos === width) {
+          console.log('REACHED CLEAR INT');
           clearInterval(id);
         } else {
-          pos += increment;
-
           if (position == 'next') {
-            el.scrollLeft += increment;
+            el.scrollLeft += increment; //console.log('NEXT', pos, width);
           } else {
-            el.scrollLeft -= increment;
+            el.scrollLeft -= increment; //console.log('PREV', pos, width)
           }
         }
       }
     }
   }
-});
+}); // slideLoop(pass) {
+// 	let steps = this.items.length - this.frame;
+// 	if(this.count >= steps & pass == "forward"){
+//         this.direction = "backward";
+//         this.previous();
+//         return
+//     }
+//     if(this.count <= steps & pass == "backward"){
+//         if(this.count <= 0){
+//             this.count = 0;
+//             this.direction = "forward";
+//             this.next();
+//             return;
+//         }
+//         this.previous();
+//         return;
+//     }
+//     if(this.count < steps & pass == "forward"){
+//         if(this.count < 0){
+//             this.resetScroll();
+//             return;
+//         } else if(this.count == 0){
+//             this.next();
+//             return;
+//         }
+//         this.next();
+//         return;
+//     }
+//   this.resetScroll();
+// },
+// resetScroll(){
+// 	this.count = 0;
+//     this.direction = "forward";
+//     this.scroll("reset");
+// },
 
 /***/ }),
 
@@ -19716,13 +19726,48 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("div", { staticClass: "control" }, [
-        _c("p", { staticClass: "prev", on: { click: _vm.previous } }, [
-          _vm._v("\n               PREVIOUS\n           ")
-        ]),
+        _c(
+          "button",
+          {
+            ref: "prev",
+            staticClass: "prev",
+            attrs: { disabled: _vm.count === 1 },
+            on: { click: _vm.previous }
+          },
+          [_vm._v("\n               PREVIOUS\n           ")]
+        ),
         _vm._v(" "),
-        _c("p", { staticClass: "next", on: { click: _vm.next } }, [
-          _vm._v("\n               NEXT\n           ")
-        ])
+        _c(
+          "button",
+          {
+            ref: "next",
+            staticClass: "next",
+            attrs: { disabled: _vm.count === _vm.nextBtnLimit },
+            on: { click: _vm.next }
+          },
+          [_vm._v("\n               NEXT\n           ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: false,
+                expression: "false"
+              }
+            ]
+          },
+          [
+            _c("p", [_vm._v("Count: " + _vm._s(_vm.count))]),
+            _vm._v(" "),
+            _c("p", [_vm._v("Leng: " + _vm._s(_vm.items.length))]),
+            _vm._v(" "),
+            _c("p", [_vm._v("Next limit " + _vm._s(_vm.nextBtnLimit))])
+          ]
+        )
       ])
     ],
     2
