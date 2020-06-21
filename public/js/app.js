@@ -1967,12 +1967,14 @@ __webpack_require__.r(__webpack_exports__);
       count: 1,
       items: JSON.parse(this.accessories),
       direction: 'forward',
-      frame: 3
+      frame: 3,
+      tileWidth: 0
     };
   },
   mounted: function mounted() {
     //var slide = setInterval(()=>this.slideLoop(this.direction),2000)
     this.$refs.prev.disabled = true;
+    this.tileWidth = this.$refs.tileWidth[0].clientWidth;
   },
   computed: {
     nextBtnLimit: function nextBtnLimit() {
@@ -1992,9 +1994,9 @@ __webpack_require__.r(__webpack_exports__);
       var el = this.$refs.slider;
       var pos = 0;
       var increment = 2;
-      var id = setInterval(frame, 2);
+      var id = setInterval(frame, 4);
       var num = this.items.length - this.frame;
-      var width = 316;
+      var width = this.tileWidth % 2 === 0 ? this.tileWidth : this.tileWidth - 1;
 
       function frame() {
         pos++;
@@ -19660,7 +19662,12 @@ var render = function() {
       _vm._l(_vm.items, function(item, index) {
         return _c(
           "div",
-          { key: index, staticClass: " medium-4 small-6 cell" },
+          {
+            key: index,
+            ref: "tileWidth",
+            refInFor: true,
+            staticClass: " medium-4 small-6 cell"
+          },
           [
             _c("div", { staticClass: "-tile" }, [
               _c(

@@ -1,6 +1,6 @@
 <template>
     <div id="accessories-slide" class="grid-x grid-padding-x" ref="slider">
-        <div v-for="(item, index) in items" :key="index" class=" medium-4 small-6 cell">
+        <div v-for="(item, index) in items" :key="index" class=" medium-4 small-6 cell" ref="tileWidth">
             <div class="-tile"> 
                 <div class="-tile-image" :style="{ backgroundImage: `url(${item.productImg})` } ">
                     <div class="-qty-option">
@@ -59,11 +59,15 @@ data() {
         items: JSON.parse(this.accessories),
         direction: 'forward',
         frame: 3,
+        tileWidth : 0,
+
     }
 },
 mounted(){
     //var slide = setInterval(()=>this.slideLoop(this.direction),2000)
      this.$refs.prev.disabled = true;
+    this.tileWidth = this.$refs.tileWidth[0].clientWidth;
+
 },
 computed: {
     nextBtnLimit(){
@@ -84,11 +88,11 @@ methods:{
         let el = this.$refs.slider;
         let pos = 0;
         let increment = 2;
-        let id = setInterval(frame, 2);
+        let id = setInterval(frame, 4);
         let num = this.items.length - this.frame;
-        let width = 316;
+        let width = this.tileWidth % 2 === 0 ? this.tileWidth: this.tileWidth - 1;
 
-          function frame() {
+        function frame() {
             pos++;
 
             if (pos === width) {
