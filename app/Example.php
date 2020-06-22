@@ -1,6 +1,6 @@
 <?php
 namespace App;
-//use App\FOO;
+use App\Foo;
 
 class Example {
     public function __construct(Foo $foo){

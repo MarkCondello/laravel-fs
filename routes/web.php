@@ -10,21 +10,25 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use Illuminate\Filesystem\Filesystem;
+ use App\Services\Twitter;
 
-// app()->singleton('App\Example', function(){
-//     die('reached key val first.');
-//     return new App\Example;
+// app()->singleton('App\Services\Twitter', function(){
+//      return new \App\Services\Twitter('ansdivjhs');
 // });
 
-Route::get('/', function(){
-    dd(app('App\Example'));
 
-   dd(app('example'), app('example'));
-   // 'PagesController@home';
-});
-Route::get('/about', 'PagesController@about');
-Route::get('/contact', 'PagesController@contact');
+
+// Route::get('/', 'PagesController@home')->name('home');
+
+Route::get('/', function(Twitter $twitter){
+    dd($twitter);
+    //dd(app('foo'));
+    //dd(app('App\Example'));
+    //dd(app('example'), app('example'));
+ })->name('home');
+
+Route::get('/about', 'PagesController@about')->name('about');
+Route::get('/contact', 'PagesController@contact')->name('contact');
 
 Route::resource('projects', 'ProjectsController');
 //Route::get('/projects', 'ProjectsController@index');

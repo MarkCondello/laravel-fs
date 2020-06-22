@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Filesystem\Filesystem;
+use App\Services\Twitter;
 
 class ProjectsController extends Controller
 {
@@ -56,8 +57,9 @@ class ProjectsController extends Controller
     // {
     //  dd($file);
     // }
-    public function show(Project $project)
+    public function show(Project $project, Twitter $twitter)
     {
+        //dd($twitter);
         return view('projects.show', compact('project'));
     }
 
@@ -79,7 +81,7 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update( Project $project)
+    public function update(Project $project)
     {
         $validProject = request()->validate([
             'title' => 'required|min:4|max:255',

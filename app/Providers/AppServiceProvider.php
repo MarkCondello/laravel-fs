@@ -13,7 +13,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        app()->bind('foo', function(){
+            return "FooBarrr!";
+        });
+
+        app()->singleton('example', function(){
+            $foo = new App\Foo();
+            return new \App\Example($foo);
+        });
     }
 
     /**
@@ -24,5 +31,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+
     }
 }

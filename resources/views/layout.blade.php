@@ -14,13 +14,13 @@
     <div id="app"> 
         <div class="top-bar">
             <div class="top-bar-left">
-                <h1><a href="/">Laravel From Scratch</a></h1>
+                <h1><a href="{{ route('home') }}">Laravel From Scratch</a></h1>
             </div>
             <div class="top-bar-right">
                 <ul class="menu">
-                    <li><a href="projects">Projects</a></li>
-                    <li><a href="about">About</a></li>
-                    <li><a href="contact">Contact</a></li>
+                    <li><a href="{{ route('projects.index') }}">Projects</a></li>
+                    <li><a href="{{ route('about') }}">About</a></li>
+                    <li><a href="{{ route('contact') }}">Contact</a></li>
                 </ul>
             </div>
         </div>
