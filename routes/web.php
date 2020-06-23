@@ -18,14 +18,14 @@
 
 
 
-// Route::get('/', 'PagesController@home')->name('home');
+ Route::get('/', 'PagesController@home')->name('home');
 
-Route::get('/', function(Twitter $twitter){
-    dd($twitter);
-    //dd(app('foo'));
-    //dd(app('App\Example'));
-    //dd(app('example'), app('example'));
- })->name('home');
+// Route::get('/', function(Twitter $twitter){
+//     dd($twitter);
+//     //dd(app('foo'));
+//     //dd(app('App\Example'));
+//     //dd(app('example'), app('example'));
+//  })->name('home');
 
 Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/contact', 'PagesController@contact')->name('contact');
