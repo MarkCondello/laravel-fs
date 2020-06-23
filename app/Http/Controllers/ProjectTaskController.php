@@ -21,13 +21,13 @@ class ProjectTaskController extends Controller
     }
 
     //this update method is not used
-    public function update(Task $task){
-        request()->has('completed') ? $task->complete() : $task->incomplete();
-        return redirect()->back();
-        //$task->complete(request()->has('completed'));
+    // public function update(Task $task){
+    //     request()->has('completed') ? $task->complete() : $task->incomplete();
+    //     return redirect()->back();
+    //     //$task->complete(request()->has('completed'));
 
-        // $task->update([
-        //     'completed' => request()->has('completed')
-        // ]);
-    }
+    //     // $task->update([
+    //     //     'completed' => request()->has('completed')
+    //     // ]);
+    // }
 }

@@ -12,16 +12,57 @@
 </head>
 <body>
     <div id="app"> 
-        <div class="top-bar">
+        <div class="top-bar" data-topbar>
             <div class="top-bar-left">
                 <h1><a href="{{ route('home') }}">Laravel From Scratch</a></h1>
             </div>
             <div class="top-bar-right">
-                <ul class="menu">
-                    <li><a href="{{ route('projects.index') }}">Projects</a></li>
+   
+                <ul class="menu dropdown " data-dropdown-menu >
+                <!-- Authentication Links -->
+                @guest
+                    <li>
+                        <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li>
+                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li>
+                        <a href="#">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <ul class="menu">
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                                </a>
+                            </li>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </ul>
+                    </li>
+                @endguest
+
+                    <li><a href="{{ route('projects.index') }}">Projects</a>
+                        <ul class="menu">
+                            <li>
+                                <a href="{{ route('projects.create') }}">Create a project</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('contact') }}">Contact</a></li>
                 </ul>
+
+ 
             </div>
         </div>
         <div class="grid-container" style="padding-top: 3rem;">
@@ -34,7 +75,10 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/bundle.js') }} "></script>
+
+
+
+    <script src="{{ asset('js/vendor.js') }} "></script>
     <script src="{{ asset('js/app.js') }} "></script>  
 </body>
 </html>

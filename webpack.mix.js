@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-var webpack = require('webpack');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,24 +13,7 @@ var webpack = require('webpack');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .combine([
+    mix.combine([
         'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/foundation-sites/dist/js/foundation.min.js',
-    ], 'public/js/bundle.js')
-
- .webpackConfig({
-    resolve: {
-        modules: [
-            'node_modules'
-        ],
-    },
-     plugins: [
-         new webpack.LoaderOptionsPlugin({
-             test: /\.s[ac]ss$/,
-             options: {
-                 includePaths: ['resources/assets/sass', 'node_modules/foundation-sites/scss']
-             }
-        })
-    ]
-});
-
+        'node_modules/foundation-sites/dist/js/foundation.min.js'
+    ], 'public/js/vendor.js');
