@@ -53,17 +53,15 @@ class ProjectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProjectValidation  $request)
+    public function store(ProjectValidation $request)
     {
         $validProject = $request->validated();
         $validProject['owner_id'] = auth()->id();       
         $project = Project::create($validProject);
 
-        \Mail::to('condellomark@gmail.com')->send(
-             new ProjectSend($project)
+        \Mail::to($project->author->email)->send(
+            new ProjectSend($project)
         );
-
-        //dd($validProject);
         return redirect('/projects');
     }
 
@@ -84,7 +82,6 @@ class ProjectsController extends Controller
         //dd($twitter);
          //$this->authorize('update', $project);
          //abort_if($project->owner_id !== auth()->id(), 403);
-
         return view('projects.show', compact('project'));
     }
 
@@ -98,7 +95,6 @@ class ProjectsController extends Controller
     {
        // $this->authorize('update', $project);
         // abort_if(\Gate::denies('update', $project), 403);
-
         return view('projects.edit', compact('project'));
     }
 
@@ -109,11 +105,10 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Project $project)
+    public function update(ProjectValidation $request, Project $project)
     {
-        $validProject = $this->validateProject();
-         $project->update($validProject);
-         return redirect('/projects');
+        $project->update($request->validated());
+        return redirect('/projects');
     }
 
     /**
@@ -126,13 +121,6 @@ class ProjectsController extends Controller
     {
          $project->delete();
          return redirect('/projects');
-    }
-
-    public function validateProject(){
-        return request()->validate([
-            'title' => 'required|min:4|max:255',
-            'description' => 'required|min:10'
-         ]);
     }
 
     public function list(){
