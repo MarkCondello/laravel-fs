@@ -33,13 +33,17 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/contact', 'PagesController@contact')->name('contact');
 
     Route::resource('projects', 'ProjectsController');
-    //Route::get('/projects', 'ProjectsController@index');
-    //Route::post('/projects', 'ProjectsController@store');
-    //Route::get('/projects/create', 'ProjectsController@create');
 
     Route::post('/completed-task/{task}', 'ProjectTaskCompleteController@store');
     Route::delete('/completed-task/{task}', 'ProjectTaskCompleteController@destroy');
     Route::post('/task/create/{project}', 'ProjectTaskController@create');
+
+    Route::get('/to-dos', function(){
+        return view('todos');
+    })->name('to-dos');
 });
 Auth::routes();
+
+
+
 

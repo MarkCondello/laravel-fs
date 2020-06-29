@@ -1,9 +1,10 @@
 @extends('layout')
 
 @section('content')
+@can('update', $project)
+
     <h1>Update {{$project->title}}</h1>
-{{--    @dump($project)--}}
-{{--    Send request to update method --}}
+ 
     <form action="/projects/{{$project->id}}" method="POST">
         @method('patch')
         @csrf
@@ -19,10 +20,14 @@
             <textarea name="description" placeholder="Project description" value="{{old('description')}}"></textarea>
             @if($errors->has('description'))
                 <div class="callout alert">
-                    <small>{{ $errors->get('description')[0]  }}</small>
+                    <small>{{ $errors->get('description')[0] }}</small>
                 </div>
             @endif
         </div>
         <button type="submit" class="button hollow">Update project</button>
     </form>
+  @else
+  <p>"This aint yo project yo"</p>
+  @endcan
 @endsection
+

@@ -23,7 +23,9 @@ Vue.directive('clickout', {
 const app = new Vue({
     el: '#app',
     components: {
-        'accessories-slider': require('./AccessoriesSlider').default,
- 
+      'accessories-slider': require('./AccessoriesSlider').default,
+      'multi-select': require('./MultiSelect').default,
+      'search-sort-table': require('./SearchSortTable').default,
+
     },
 });

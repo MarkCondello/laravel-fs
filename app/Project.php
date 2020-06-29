@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     //
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['title', 'description', 'owner_id'];
 
     public function tasks(){
         return $this->hasMany(Task::class);
@@ -22,5 +22,9 @@ class Project extends Model
         // ]);
         // return $this->tasks()->create(compact($description));
         // return $this->tasks()->create(['description' => $description]);
+    }
+
+    public function author(){
+        return $this->belongsTo(User::class, 'owner_id');
     }
 }
