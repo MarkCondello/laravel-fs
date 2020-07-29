@@ -7,8 +7,7 @@
            <p> <a href="projects/{{$project->id}}">{{$project->title}}</a></p>
            <div class="grid-x">
                <form action="projects/{{$project->id}}/edit" method="GET">
-{{--                   @method('patch')--}}
-                   @csrf
+                    @csrf
                    <button type="submit" class="button danger">Update</button>
                </form>
                <form action="projects/{{$project->id}}" method="POST">
