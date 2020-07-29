@@ -1,5 +1,7 @@
 const mix = require('laravel-mix');
 var webpack = require('webpack');
+require('./laravel-mix-plugin');
+require('./laravel-mix-tailwind');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,10 +16,12 @@ var webpack = require('webpack');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .combine([
+     .combine([
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/foundation-sites/dist/js/foundation.min.js',
     ], 'public/js/bundle.js')
+    //.foo('FooBarBazz')
+   // .tailwind('./tailwind.config.js')
 
  .webpackConfig({
     resolve: {
