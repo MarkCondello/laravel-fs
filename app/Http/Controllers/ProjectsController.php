@@ -9,6 +9,7 @@ use App\Services\Twitter;
 use App\Mail\ProjectSend;
 use App\Http\Resources\ProjectCollection;
 use App\Http\Requests\ProjectValidation;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectsController extends Controller
 {
@@ -59,7 +60,9 @@ class ProjectsController extends Controller
         $validProject['owner_id'] = auth()->id();       
         $project = Project::create($validProject);
 
-        \Mail::to($project->author->email)->send(
+
+       // dd($project->author->email);
+        Mail::to($project->author->email)->send(
             new ProjectSend($project)
         );
         return redirect('/projects');
