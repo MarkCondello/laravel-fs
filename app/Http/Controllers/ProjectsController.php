@@ -16,7 +16,6 @@ use App\Notifications\NewProject;;
 
 class ProjectsController extends Controller
 {
-
     // public function __construct(){
     //     //$this->middleware('can:update,project')->except('index', 'store', 'create');
     // }
@@ -28,7 +27,6 @@ class ProjectsController extends Controller
     public function index()
     {
         //$projects = Project::where('owner_id', auth()->id())->get();
-
         // cache()->rememberForever('stats', function(){
         //     return [
         //         'visits' => 2000,
@@ -71,8 +69,7 @@ class ProjectsController extends Controller
         //send notification instead
         // $project->author->notify(new ProjectCreated($project, $project->author));
         // $project->author->notify(new NewProject($project, $project->author));
-        // $project->author->notify(new ProjectCreatedSlack());
-
+        //$project->author->notify(new ProjectCreatedSlack($project, $project->author));
         return redirect('/projects');
     }
 

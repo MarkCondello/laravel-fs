@@ -18,10 +18,16 @@ class ProjectCreatedSlack extends Notification
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
 
+    public $project;
+    public $author;
+
+
+    public function __construct($project, $author)
+    {
+        $this->project = $project;
+        $this->author = $author;
+       // dd($project, $author);
     }
 
     /**
@@ -44,9 +50,22 @@ class ProjectCreatedSlack extends Notification
      */
     public function toSlack($notifiable)
     {
+        $url = route('projects.show', ['project' => $this->project->id]);
+
         return (new SlackMessage)
+
                 ->from('Project manager app')
-                ->content('Your project was created...');
+                ->content('Your project was created...')
+                ->attachment(function ($attachment) use ($url) {
+                    $attachment
+                    ->title("Project {$this->project->id}", $url)
+                    ->fields([
+                        'Title' => $this->project->title,
+                        'Desc'  => $this->project->description,
+                        'Author' => $this->author->name,
+                        'Email' => $this->author->email
+                    ]);
+                });
     }
  
 }

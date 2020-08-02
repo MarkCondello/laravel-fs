@@ -51,7 +51,7 @@ class ProjectCreated extends Notification
                     ->subject('Your new project was created.')
                     ->greeting("G'Day, {$this->author->name}")
                     ->line("You're new project {$this->project->title} was created.")
-                    ->action('Project Link', url(route('projects.show', ['project' => $this->project->id]) ))
+                    ->action('Project Link', url( route('projects.show', ['project' => $this->project->id]) ))
                     ->salutation('Thank you for your submission!');
     }
 
