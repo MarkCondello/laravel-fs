@@ -33,6 +33,10 @@ return [
     'twitter' => [
         'key' => 'public-key',
         'secret' => env('TWITTER_SECRET', 'secret-key-yo')
-    ]
+    ],
+
+    'nexmo' => [
+        'sms_from' => '+61406046531',
+    ],
 
 ];

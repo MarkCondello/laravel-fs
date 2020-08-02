@@ -40,4 +40,15 @@ class User extends Authenticatable
     public function projects(){
         return $this->hasMany(Project::class, 'owner_id');
     }
+
+    public function routeNotificationForSlack()
+    {
+        return 'https://hooks.slack.com/services/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';
+    }
+
+    public function routeNotificationForNexmo()
+    {
+        //usually a users phone column on the model
+        return '+61406046531';
+    }
 }
