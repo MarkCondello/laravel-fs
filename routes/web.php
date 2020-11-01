@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/task-incomplete/{task}', 'ProjectTaskCompleteController@destroy');
 
 
-    Route::post('/task/create/{project}', 'ProjectTaskController@create');
+    Route::post('/task/create/{project}', 'ProjectTaskController@create')->name('project.save');
     Route::get('/project/{project}/tasks', 'ProjectTaskController@index')->name('project.task.index');
 
 

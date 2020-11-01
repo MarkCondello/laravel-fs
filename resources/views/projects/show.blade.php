@@ -14,6 +14,7 @@
 <project-tasks 
 {{-- projectId="{{$project->id}}"  --}}
 get-url="{{ route('project.task.index', $project) }}"
+save-url="{{ route('project.save', $project) }}"
 ></project-tasks>
 
 
@@ -34,7 +35,7 @@ get-url="{{ route('project.task.index', $project) }}"
   @endforeach
 @endif --}}
 
-<hr>
+{{-- <hr>
 <h3>Create tasks: </h3>
 <form action="/task/create/{{$project->id}}" method="POST">
   @csrf
@@ -43,7 +44,7 @@ get-url="{{ route('project.task.index', $project) }}"
   </label>
  
   <input type="submit" value="Add task" class="button bollow"/>
-</form>
+</form> --}}
 
  @include('partials.errors') 
 @endsection

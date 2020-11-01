@@ -14,6 +14,13 @@
             </label>
         </li>
     </ul>
+    <hr>
+    <h3>Create tasks: </h3>
+    <label>Task name
+        <input type="text" name="description" v-model="taskDescription" />
+    </label>
+    <button type="submit" class="button bollow" @click.prevent="handleCreateTask">Add task</button>
+
 </div>
 </template>
 <script>
@@ -23,31 +30,47 @@ export default {
     props: {
         getUrl: {
             type: String,
-        }
+        },
+        saveUrl: {
+            type: String,
+        },
     },
     data(){
         return {
             tasks: [],
+            taskDescription: ''
         }
     },
     created(){
         this.getTasks();
     },
     methods: {
+        handleCreateTask(){
+            if(this.taskDescription != '' && this.saveUrl){
+                axios
+                .post(this.saveUrl, {description: this.taskDescription})
+                .then(resp => {
+                    console.log("Description has been saved: ", resp.status);
+                    this.taskDescription = '';
+                    this.getTasks();
+                })
+                .catch(console.error)
+            }
+        },
         getTasks(){
             if(this.getUrl){
-                axios.get(this.getUrl)
+                axios
+                .get(this.getUrl)
                 .then(resp => this.tasks = resp.data)
                 .catch(console.error)
             }
         },
         handleCheckbox(task){
             //get id and completed status to determine endpoint
-            console.log('Reached handleCheckbox', task);
-            if(task.completed){
+             if(task.completed){
                 axios
                 .post('/task-incomplete/' + task.id, {task: task})
-                .then(resp =>  { console.log("Task incomplete request:", resp)})
+                .then(resp =>  { console.log("Task incomplete request:", resp.status)})
                 .catch(console.error)     
             } else {
                 axios

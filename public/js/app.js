@@ -2148,41 +2148,64 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Project-Tasks',
   props: {
     getUrl: {
       type: String
+    },
+    saveUrl: {
+      type: String
     }
   },
   data: function data() {
     return {
-      tasks: []
+      tasks: [],
+      taskDescription: ''
     };
   },
   created: function created() {
     this.getTasks();
   },
   methods: {
-    getTasks: function getTasks() {
+    handleCreateTask: function handleCreateTask() {
       var _this = this;
+
+      if (this.taskDescription != '' && this.saveUrl) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(this.saveUrl, {
+          description: this.taskDescription
+        }).then(function (resp) {
+          console.log("Description has been saved: ", resp.status);
+          _this.taskDescription = '';
+
+          _this.getTasks();
+        })["catch"](console.error);
+      }
+    },
+    getTasks: function getTasks() {
+      var _this2 = this;
 
       if (this.getUrl) {
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.getUrl).then(function (resp) {
-          return _this.tasks = resp.data;
+          return _this2.tasks = resp.data;
         })["catch"](console.error);
       }
     },
     handleCheckbox: function handleCheckbox(task) {
       //get id and completed status to determine endpoint
-      console.log('Reached handleCheckbox', task);
-
       if (task.completed) {
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/task-incomplete/' + task.id, {
           task: task
         }).then(function (resp) {
-          console.log("Task incomplete request:", resp);
+          console.log("Task incomplete request:", resp.status);
         })["catch"](console.error);
       } else {
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/completed-task/' + task.id, {
@@ -21017,7 +21040,50 @@ var render = function() {
           }),
           0
         )
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("h3", [_vm._v("Create tasks: ")]),
+    _vm._v(" "),
+    _c("label", [
+      _vm._v("Task name\n        "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.taskDescription,
+            expression: "taskDescription"
+          }
+        ],
+        attrs: { type: "text", name: "description" },
+        domProps: { value: _vm.taskDescription },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.taskDescription = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "button bollow",
+        attrs: { type: "submit" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.handleCreateTask($event)
+          }
+        }
+      },
+      [_vm._v("Add task")]
+    )
   ])
 }
 var staticRenderFns = []
