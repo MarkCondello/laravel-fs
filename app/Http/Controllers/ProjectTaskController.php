@@ -14,10 +14,15 @@ class ProjectTaskController extends Controller
         
         $project->addTask( request()->validate([
             'description' => 'required|min:4|max:255',
-        ])
+            ])
         );
 
         return redirect()->back();
+    }
+
+    //get all tasks
+    public function index(Project $project){
+       return $project->tasks;
     }
 
     //this update method is not used

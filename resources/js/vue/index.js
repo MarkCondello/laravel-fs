@@ -26,6 +26,6 @@ const app = new Vue({
       'accessories-slider': require('./AccessoriesSlider').default,
       'multi-select': require('./MultiSelect').default,
       'search-sort-table': require('./SearchSortTable').default,
-
+      'project-tasks' : require('./ProjectTasks').default,
     },
 });

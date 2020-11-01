@@ -12,7 +12,7 @@ use App\Http\Requests\ProjectValidation;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\ProjectCreated;
 use App\Notifications\ProjectCreatedSlack;
-use App\Notifications\NewProject;;
+use App\Notifications\NewProject;
 
 class ProjectsController extends Controller
 {
@@ -62,14 +62,14 @@ class ProjectsController extends Controller
         $project = Project::create($validProject);
 
         //send mail using mailable
-        Mail::to($project->author->email)->send(
-            new ProjectSend($project)
-        );
+        // Mail::to($project->author->email)->send(
+        //     new ProjectSend($project)
+        // );
 
         //send notification instead
-        // $project->author->notify(new ProjectCreated($project, $project->author));
-        // $project->author->notify(new NewProject($project, $project->author));
-        //$project->author->notify(new ProjectCreatedSlack($project, $project->author));
+         //$project->author->notify(new ProjectCreated($project, $project->author));
+        //$project->author->notify(new NewProject($project, $project->author));
+         $project->author->notify(new ProjectCreatedSlack($project, $project->author));
         return redirect('/projects');
     }
 
