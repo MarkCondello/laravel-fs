@@ -9,10 +9,13 @@ use App\Services\Twitter;
 use App\Mail\ProjectSend;
 use App\Http\Resources\ProjectCollection;
 use App\Http\Requests\ProjectValidation;
+use Illuminate\Support\Facades\Mail;
+use App\Notifications\ProjectCreated;
+use App\Notifications\ProjectCreatedSlack;
+use App\Notifications\NewProject;
 
 class ProjectsController extends Controller
 {
-
     // public function __construct(){
     //     //$this->middleware('can:update,project')->except('index', 'store', 'create');
     // }
@@ -24,7 +27,6 @@ class ProjectsController extends Controller
     public function index()
     {
         //$projects = Project::where('owner_id', auth()->id())->get();
-
         // cache()->rememberForever('stats', function(){
         //     return [
         //         'visits' => 2000,
@@ -59,9 +61,15 @@ class ProjectsController extends Controller
         $validProject['owner_id'] = auth()->id();       
         $project = Project::create($validProject);
 
-        \Mail::to($project->author->email)->send(
-            new ProjectSend($project)
-        );
+        //send mail using mailable
+        // Mail::to($project->author->email)->send(
+        //     new ProjectSend($project)
+        // );
+
+        //send notification instead
+         //$project->author->notify(new ProjectCreated($project, $project->author));
+        //$project->author->notify(new NewProject($project, $project->author));
+         $project->author->notify(new ProjectCreatedSlack($project, $project->author));
         return redirect('/projects');
     }
 
@@ -107,7 +115,10 @@ class ProjectsController extends Controller
      */
     public function update(ProjectValidation $request, Project $project)
     {
+
         $project->update($request->validated());
+        //ToDo: create an update notication
+       // $project->author->notify( new ProjectEdited($project, $project->author) );
         return redirect('/projects');
     }
 

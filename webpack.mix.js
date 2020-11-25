@@ -1,4 +1,7 @@
 const mix = require('laravel-mix');
+var webpack = require('webpack');
+require('./laravel-mix-plugin');
+require('./laravel-mix-tailwind');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,7 +16,25 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    mix.combine([
+     .combine([
         'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/foundation-sites/dist/js/foundation.min.js'
-    ], 'public/js/vendor.js');
+        'node_modules/foundation-sites/dist/js/foundation.min.js',
+    ], 'public/js/bundle.js')
+    //.foo('FooBarBazz')
+   // .tailwind('./tailwind.config.js')
+
+ .webpackConfig({
+    resolve: {
+        modules: [
+            'node_modules'
+        ],
+    },
+     plugins: [
+         new webpack.LoaderOptionsPlugin({
+             test: /\.s[ac]ss$/,
+             options: {
+                 includePaths: ['resources/assets/sass', 'node_modules/foundation-sites/scss']
+             }
+        })
+    ]
+});

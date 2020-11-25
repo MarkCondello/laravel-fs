@@ -28,5 +28,6 @@ const app = new Vue({
       'search-sort-table': require('./SearchSortTable').default,
       'scrollable': require('./Scrollable').default,
 
+      'project-tasks' : require('./ProjectTasks').default,
     },
 });
