@@ -14,7 +14,8 @@
     <div id="app"> 
         <div class="top-bar" data-topbar>
             <div class="top-bar-left">
-                <h1><a href="{{ route('home') }}">Laravel From Scratch</a></h1>
+                <h1><a href="{{ route('home') }}"> <img src="{{asset('images/logos/a-style.png')}}" width="100" />
+</a></h1>
             </div>
             <div class="top-bar-right">
    

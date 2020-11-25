@@ -38,11 +38,17 @@ Route::group(['middleware' => ['auth']], function(){
     Route::delete('/completed-task/{task}', 'ProjectTaskCompleteController@destroy');
     Route::post('/task/create/{project}', 'ProjectTaskController@create');
 
-    Route::get('/to-dos', function(){
-        return view('todos');
-    })->name('to-dos');
+
 });
 Auth::routes();
+
+Route::get('/to-dos', function(){
+    return view('todos');
+})->name('to-dos');
+
+Route::get('/scroll', function(){
+    return view('scroll');
+})->name('scroll');
 
 
 

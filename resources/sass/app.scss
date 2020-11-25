@@ -1,3 +1,8 @@
+@import '../../node_modules/@fortawesome/fontawesome-pro/scss/fontawesome.scss';
+@import '../../node_modules/@fortawesome/fontawesome-pro/scss/light.scss';
+@import '../../node_modules/@fortawesome/fontawesome-pro/scss/solid.scss';
+
+ 
 /*
  * Pallet
  *------------------------------------*/
@@ -13,12 +18,16 @@
 /*
  * Common
  *------------------------------------*/
- @import "common/mixins";
+ @import 
+ "common/mixins",
+ "common/helpers",
+
+ "common/reusable.scss";
 
 /*
  * Components
  *------------------------------------*/
- @import "components/product-tile";
+@import "components/product-tile";
 @import "components/accessories-slide";
 //@import "components/search-sort-table";
 
@@ -27,3 +36,17 @@
  *------------------------------------*/
 // @import "site";
 // @import "admin";
+
+.slide-window {
+    width: 100%;  
+    overflow: hidden;
+
+    .slide-track {
+        display: flex;
+        flex-direction: row;
+        flex-flow: nowrap;
+        position: relative;
+        left: 0;
+        transition: left 1s;
+    }
+}

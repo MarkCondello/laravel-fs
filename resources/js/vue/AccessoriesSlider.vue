@@ -10,7 +10,6 @@
                         </div>
                         <input :name="`accessory[${item.productId}]`">
                         <!-- <input name="accessory[{{ $productId }}]"> -->
-
                         <a href="#" class="product-cta add-to-stock">
                             <!-- @php echo file_get_contents('images/icons/stock.svg') @endphp -->
                             Stock
@@ -28,7 +27,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="control">
             <button @click="previous" class="prev" ref='prev' :disabled="count === 1">
                 PREVIOUS
@@ -65,14 +63,14 @@ data() {
 },
 mounted(){
     //var slide = setInterval(()=>this.slideLoop(this.direction),2000)
-     this.$refs.prev.disabled = true;
+    this.$refs.prev.disabled = true;
     this.tileWidth = this.$refs.tileWidth[0].clientWidth;
 
 },
 computed: {
     nextBtnLimit(){
-        return this.items.length - (this.frame - 1);
-     }
+    return this.items.length - (this.frame - 1);
+    }
 },
 
 methods:{
