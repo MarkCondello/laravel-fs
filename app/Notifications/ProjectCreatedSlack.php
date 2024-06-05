@@ -53,19 +53,18 @@ class ProjectCreatedSlack extends Notification
         $url = route('projects.show', ['project' => $this->project->id]);
 
         return (new SlackMessage)
-
-                ->from('Project manager app')
-                ->content('Your project was created...')
-                ->attachment(function ($attachment) use ($url) {
-                    $attachment
-                    ->title("Project {$this->project->id}", $url)
-                    ->fields([
-                        'Title' => $this->project->title,
-                        'Desc'  => $this->project->description,
-                        'Author' => $this->author->name,
-                        'Email' => $this->author->email
-                    ]);
-                });
+            ->from('Project manager app')
+            ->content('Your project was created...')
+            ->attachment(function ($attachment) use ($url) {
+                $attachment
+                ->title("Project {$this->project->id}", $url)
+                ->fields([
+                    'Title' => $this->project->title,
+                    'Desc'  => $this->project->description,
+                    'Author' => $this->author->name,
+                    'Email' => $this->author->email
+                ]);
+            });
     }
  
 }

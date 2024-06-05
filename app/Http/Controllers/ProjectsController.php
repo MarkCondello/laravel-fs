@@ -69,7 +69,7 @@ class ProjectsController extends Controller
         //send notification instead
          //$project->author->notify(new ProjectCreated($project, $project->author));
         //$project->author->notify(new NewProject($project, $project->author));
-         $project->author->notify(new ProjectCreatedSlack($project, $project->author));
+        // $project->author->notify(new ProjectCreatedSlack($project, $project->author));
         return redirect('/projects');
     }
 

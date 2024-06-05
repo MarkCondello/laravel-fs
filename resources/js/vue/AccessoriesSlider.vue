@@ -4,21 +4,14 @@
             <div class="-tile"> 
                 <div class="-tile-image" :style="{ backgroundImage: `url(${item.productImg})` } ">
                     <div class="-qty-option">
-                        <div class="product-cta add-to-cart">
-                            <!-- @php echo file_get_contents('images/icons/cart.svg') @endphp -->
-                            Cart
-                        </div>
+                        <div class="product-cta add-to-cart">Cart</div>
                         <input :name="`accessory[${item.productId}]`">
-                        <!-- <input name="accessory[{{ $productId }}]"> -->
-                        <a href="#" class="product-cta add-to-stock">
-                            <!-- @php echo file_get_contents('images/icons/stock.svg') @endphp -->
-                            Stock
-                        </a>
+                        <a href="#" class="product-cta add-to-stock">Stock</a>
                     </div>
                 </div>
                 <div class="-tile-info">
                     <div class="-tile-title flex align-justify">
-                        <h3 class="h6">  {{item.productName}}  </h3>
+                        <h3 class="h6">{{item.productName}}</h3>
                         <small class="-grey-text -secondary-title"> {{item.sku}} </small>
                     </div>
                     <p>{{ item.productPrice }}</p>

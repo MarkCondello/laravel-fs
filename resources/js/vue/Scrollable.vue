@@ -1,8 +1,8 @@
 <template>
     <div 
-    class="column" 
-    v-on:scroll="handleScroll"
-    ref="column"
+        class="column" 
+        v-on:scroll="handleScroll"
+        ref="column"
     >
         <div class="item"></div>
         <div class="item"></div>

@@ -103,10 +103,10 @@
                                             </div>
                                             <div>
                                                 <button class="prev-btn f-size-3 colour-white">
-                                                    <i class="fal fa-arrow-circle-left"></i>
+                                                    <i class="fa fa-arrow-circle-left"></i>
                                                 </button>
                                                 <button class="next-btn f-size-3 colour-white">
-                                                    <i class="fal fa-arrow-circle-right"></i>
+                                                    <i class="fa fa-arrow-circle-right"></i>
                                                 </button>
                                             </div>
                                         </div>

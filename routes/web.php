@@ -32,8 +32,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/about', 'PagesController@about')->name('about');
     Route::get('/contact', 'PagesController@contact')->name('contact');
 
-
-
     Route::resource('projects', 'ProjectsController');
 
     //change these to use named routes and pass those into the component, ????
@@ -43,12 +41,8 @@ Route::group(['middleware' => ['auth']], function(){
     //delete route in axios was deleting the project 
     Route::post('/task-incomplete/{task}', 'ProjectTaskCompleteController@destroy');
 
-
     Route::post('/task/create/{project}', 'ProjectTaskController@create')->name('project.save');
     Route::get('/project/{project}/tasks', 'ProjectTaskController@index')->name('project.task.index');
-
-
-
 });
 Auth::routes();
 
@@ -59,7 +53,3 @@ Route::get('/to-dos', function(){
 Route::get('/scroll', function(){
     return view('scroll');
 })->name('scroll');
-
-
-
-
